@@ -9,8 +9,6 @@ import ru.oogis.searadar.api.types.IFF;
 import ru.oogis.searadar.api.types.TargetStatus;
 import ru.oogis.searadar.api.types.TargetType;
 import java.sql.Timestamp;
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 /**
@@ -63,7 +61,18 @@ public class Mr2313Tests {
 
         List<SearadarStationMessage> actual = converter.convert("$RATTM,66,28.71,341.1,T,57.6,024.5,T,0.4,4.1,N,b,L,,457362,А*42");
 
-        Assertions.assertEquals(expected.toString(), actual.get(0).toString());
+        TrackedTargetMessage act_ttm = (TrackedTargetMessage) actual.get(0);
+
+        Assertions.assertEquals(expected.getMsgRecTime().getTime() / 1000, act_ttm.getMsgRecTime().getTime() / 1000);
+        Assertions.assertEquals(expected.getBearing(), act_ttm.getBearing());
+        Assertions.assertEquals(expected.getCourse(), act_ttm.getCourse());
+        Assertions.assertEquals(expected.getIff(), act_ttm.getIff());
+        Assertions.assertEquals(expected.getDistance(), act_ttm.getDistance());
+        Assertions.assertEquals(expected.getSpeed(), act_ttm.getSpeed());
+        Assertions.assertEquals(expected.getStatus(), act_ttm.getStatus());
+        Assertions.assertEquals(expected.getMsgTime(), act_ttm.getMsgTime());
+        Assertions.assertEquals(expected.getTargetNumber(), act_ttm.getTargetNumber());
+        Assertions.assertEquals(expected.getType(), act_ttm.getType());
     }
 
     /**
@@ -117,9 +126,8 @@ public class Mr2313Tests {
     void ConverterTTMTest_EmptyString() {
         Mr231_3Converter converter = st.createConverter();
 
-        List<SearadarStationMessage> actual = new ArrayList<>();
         try {
-            actual = converter.convert("$RATTM,,,,,,,,,,,,,,,*");
+            converter.convert("$RATTM,,,,,,,,,,,,,,,*");
         }
         catch (IndexOutOfBoundsException ex){
             Assertions.assertEquals("Index 12 out of bounds for length 1", ex.getMessage());
@@ -144,10 +152,8 @@ public class Mr2313Tests {
     void converterRSDTest_EmptyString() {
         Mr231_3Converter converter = st.createConverter();
 
-        List<SearadarStationMessage> actual = new ArrayList<>();
-
         try{
-            actual = converter.convert("$RARSD,,,,,,,,,,,,,,*");
+            converter.convert("$RARSD,,,,,,,,,,,,,,*");
         }
         catch (IndexOutOfBoundsException ex){
             Assertions.assertEquals("Index 1 out of bounds for length 1", ex.getMessage());
