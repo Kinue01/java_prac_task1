@@ -9,16 +9,26 @@
     </properties>
     <border type="none"/>
     <children>
-      <component id="8469e" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
-        <constraints border-constraint="North"/>
-        <properties/>
-      </component>
       <component id="42cbf" class="javax.swing.JButton" binding="button1" default-binding="true">
         <constraints border-constraint="South"/>
         <properties>
           <text value="Button"/>
         </properties>
       </component>
+      <grid id="47c66" layout-manager="GridBagLayout">
+        <constraints border-constraint="Center"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="8469e" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties/>
+          </component>
+        </children>
+      </grid>
     </children>
   </grid>
 </form>

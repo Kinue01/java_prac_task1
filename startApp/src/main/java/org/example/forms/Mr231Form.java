@@ -11,10 +11,13 @@ import ru.oogis.searadar.api.types.IFF;
 import ru.oogis.searadar.api.types.TargetStatus;
 import ru.oogis.searadar.api.types.TargetType;
 import javax.swing.*;
+import javax.swing.plaf.FontUIResource;
+import javax.swing.text.StyleContext;
 import java.awt.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Vector;
 
 public class Mr231Form extends JDialog {
@@ -441,11 +444,38 @@ public class Mr231Form extends JDialog {
         list1 = new JList();
         list1.setSelectionMode(0);
         panel1.add(list1, BorderLayout.EAST);
+        final JPanel panel2 = new JPanel();
+        panel2.setLayout(new BorderLayout(0, 0));
+        panel1.add(panel2, BorderLayout.NORTH);
         textField1 = new JTextField();
-        panel1.add(textField1, BorderLayout.NORTH);
+        Font textField1Font = this.$$$getFont$$$(null, -1, 24, textField1.getFont());
+        if (textField1Font != null) textField1.setFont(textField1Font);
+        panel2.add(textField1, BorderLayout.NORTH);
         button1 = new JButton();
         button1.setText("Button");
-        panel1.add(button1, BorderLayout.SOUTH);
+        panel2.add(button1, BorderLayout.SOUTH);
+    }
+
+    /**
+     * @noinspection ALL
+     */
+    private Font $$$getFont$$$(String fontName, int style, int size, Font currentFont) {
+        if (currentFont == null) return null;
+        String resultName;
+        if (fontName == null) {
+            resultName = currentFont.getName();
+        } else {
+            Font testFont = new Font(fontName, Font.PLAIN, 10);
+            if (testFont.canDisplay('a') && testFont.canDisplay('1')) {
+                resultName = fontName;
+            } else {
+                resultName = currentFont.getName();
+            }
+        }
+        Font font = new Font(resultName, style >= 0 ? style : currentFont.getStyle(), size >= 0 ? size : currentFont.getSize());
+        boolean isMac = System.getProperty("os.name", "").toLowerCase(Locale.ENGLISH).startsWith("mac");
+        Font fontWithFallback = isMac ? new Font(font.getFamily(), font.getStyle(), font.getSize()) : new StyleContext().getFont(font.getFamily(), font.getStyle(), font.getSize());
+        return fontWithFallback instanceof FontUIResource ? fontWithFallback : new FontUIResource(fontWithFallback);
     }
 
     /**
@@ -454,5 +484,4 @@ public class Mr231Form extends JDialog {
     public JComponent $$$getRootComponent$$$() {
         return panel1;
     }
-
 }

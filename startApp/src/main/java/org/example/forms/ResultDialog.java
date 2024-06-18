@@ -11,9 +11,6 @@ public class ResultDialog extends JDialog {
     private JLabel resText;
 
     public ResultDialog() {
-        /*contentPane = new JPanel();
-        buttonOK = new JButton();
-        resText = new JLabel();*/
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -73,5 +70,4 @@ public class ResultDialog extends JDialog {
     public JComponent $$$getRootComponent$$$() {
         return contentPane;
     }
-
 }

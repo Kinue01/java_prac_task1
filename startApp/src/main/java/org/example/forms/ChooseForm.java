@@ -71,11 +71,18 @@ public class ChooseForm {
         panel1 = new JPanel();
         panel1.setLayout(new BorderLayout(0, 0));
         panel1.setPreferredSize(new Dimension(500, 300));
-        comboBox1 = new JComboBox();
-        panel1.add(comboBox1, BorderLayout.NORTH);
         button1 = new JButton();
         button1.setText("Button");
         panel1.add(button1, BorderLayout.SOUTH);
+        final JPanel panel2 = new JPanel();
+        panel2.setLayout(new GridBagLayout());
+        panel1.add(panel2, BorderLayout.CENTER);
+        comboBox1 = new JComboBox();
+        GridBagConstraints gbc;
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        panel2.add(comboBox1, gbc);
     }
 
     /**
