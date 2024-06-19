@@ -10,13 +10,22 @@
 При установке выберите полный тип установки.
 
 После установки и запуска необходимо: Выбрать Multiple windows -> Выбрать Start no client -> Поставить галочку напротив Disable access control -> Нажать Готово.
+
+Далее необходимо запустить командную строку от имени администратора и выполнить следующие команды:
+```
+setx DISPLAY host.docker.internal:0.0
+setx DISPLAY host.docker.internal:0.0 /m
+```
+
+После выполнения сделайте перезагрузку
 ## Linux (Ubuntu, Mint)
 Выполните следующие команды:
 ```
 sudo apt update
 sudo apt install xorg openbox
-xhost +local:docker
+export DISPLAY=:0
 xhost si:localuser:root
+xhost +
 ```
 # Запуск приложения
 ## Windows
