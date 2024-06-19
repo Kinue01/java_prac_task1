@@ -23,6 +23,16 @@ setx DISPLAY host.docker.internal:0.0 /m
 ```
 sudo apt update
 sudo apt install xorg openbox
+```
+Проверьте наличие установленной переменной DISPLAY с помощью данной команды: `echo $DISPLAY`.
+
+Если значение равно :0, то:
+```
+xhost si:localuser:root
+xhost +
+```
+Иначе:
+```
 export DISPLAY=:0
 xhost si:localuser:root
 xhost +
