@@ -25,3 +25,10 @@ xhost si:localuser:root
 Для запуска приложения необходимо в корне проекта в терминале запустить команду: `docker compose up`.
 ## Linux
 Для запуска приложения необходимо в корне проекта в терминале запустить команду: `sudo docker compose up`
+
+# Отладка приложения
+При необходимости, для полного удаления созданных контейнеров, образов и хранилищ, выполните команду
+## Windows
+`docker compose down --rmi all --volumes`
+## Linux
+`sudo docker compose down --rmi all --volumes`
