@@ -1,3 +1,7 @@
+CREATE USER p_user WITH ENCRYPTED PASSWORD '123';
+
+GRANT ALL PRIVILEGES ON DATABASE prac2 TO p_user;
+
 create table if not exists tb_msgtypes
 (
 	type_id smallserial primary key,
@@ -5,6 +9,8 @@ create table if not exists tb_msgtypes
 );
 
 insert into tb_msgtypes (type_name) values ('МР-231'), ('МР-231-3');
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE tb_msgtypes TO p_user;
 
 create table if not exists tb_target_type
 (
@@ -14,6 +20,8 @@ create table if not exists tb_target_type
 
 insert into tb_target_type (type_name) values ('Поверхность'), ('Воздух'), ('Неизвестно');
 
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE tb_target_type TO p_user;
+
 create table if not exists tb_target_status 
 (
 	status_id smallserial primary key,
@@ -21,6 +29,8 @@ create table if not exists tb_target_status
 );
 
 insert into tb_target_status (status_name) values ('Сопровождавшаяся, но потерянная (L)'), ('Недостоверные данные (Q)'), ('Сопровождается (T)');
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE tb_target_status TO p_user;
 
 create table if not exists tb_iff
 (
@@ -30,6 +40,8 @@ create table if not exists tb_iff
 
 insert into tb_iff (iff_name) values ('Своя (b)'), ('Чужая (p)'), ('Неопределённая (d)');
 
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE tb_iff TO p_user;
+
 create table if not exists tb_distance_unit
 (
 	unit_id smallserial primary key,
@@ -37,6 +49,8 @@ create table if not exists tb_distance_unit
 );
 
 insert into tb_distance_unit (unit_name) values ('Километры (K)'), ('Мили (N)');
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE tb_distance_unit TO p_user;
 
 create table if not exists tb_display_orientation
 (
@@ -46,6 +60,8 @@ create table if not exists tb_display_orientation
 
 insert into tb_display_orientation (orientation_name) values ('Курс стабилизированный (C)'), ('По курсу (H)'), ('По истинному меридиану (N)');
 
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE tb_display_orientation TO p_user;
+
 create table if not exists tb_working_mode
 (
 	mode_id smallserial primary key,
@@ -53,6 +69,8 @@ create table if not exists tb_working_mode
 );
 
 insert into tb_working_mode (mode_name) values ('Подготовка или режим КОНТРОЛЬ (S)'), ('Работа (P)');
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE tb_working_mode TO p_user;
 
 create table if not exists tb_ttm 
 (
@@ -73,6 +91,8 @@ create table if not exists tb_ttm
 	foreign key (iff) references tb_iff (iff_id)
 );
 
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE tb_ttm TO p_user;
+
 create table if not exists tb_vhw
 (
 	msgRecTime timestamp primary key,
@@ -81,6 +101,8 @@ create table if not exists tb_vhw
 	speed decimal not null,
 	speedUnit char(1) default 'N'
 );
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE tb_vhw TO p_user;
 
 create table if not exists tb_rsd
 (
@@ -99,3 +121,5 @@ create table if not exists tb_rsd
 	foreign key (displayOrientation) references tb_display_orientation (orientation_id),
 	foreign key (workingMode) references tb_working_mode (mode_id)
 );
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLE tb_rsd TO p_user;

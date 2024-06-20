@@ -13,8 +13,8 @@ public class Database {
 
     public Database() {
         try {
-            connection = DriverManager.getConnection("jdbc:postgresql://db/prac2?user=postgres&password=123").unwrap(PgConnection.class);
-            //connection = DriverManager.getConnection("jdbc:postgresql://localhost/prac2?user=postgres&password=123").unwrap(PgConnection.class);
+            //connection = DriverManager.getConnection("jdbc:postgresql://db/prac2?user=postgres&password=123").unwrap(PgConnection.class);
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost/prac2?user=p_user&password=123").unwrap(PgConnection.class);
         }
         catch (SQLException ex){
             ex.printStackTrace();

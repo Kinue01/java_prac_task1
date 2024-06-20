@@ -1,0 +1,19 @@
+FROM maven as build
+COPY . /app/
+WORKDIR /app/build
+RUN mvn clean package
+
+FROM ubuntu
+RUN apt-get update && \
+    apt-get install -y openjdk-8-jdk && \
+    apt-get install -y postgresql && \
+    mkdir -p /var/lib/postgresql/data && \
+    chown -R postgres:postgres /var/lib/postgresql && \
+    mkdir -p /var/run/postgresql && \
+    chown -R postgres:postgres /var/run/postgresql
+COPY --from=build /app/prac2.sql /app/prac2.sql
+COPY --from=build /app/startApp/target /app/target
+COPY --from=build /app/start.sh /app/start.sh
+RUN chmod +x /app/start.sh
+VOLUME ["/var/lib/postgresql/data"]
+CMD ["/app/start.sh"]
