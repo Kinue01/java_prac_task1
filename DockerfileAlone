@@ -16,4 +16,5 @@ COPY --from=build /app/startApp/target /app/target
 COPY --from=build /app/start.sh /app/start.sh
 RUN chmod +x /app/start.sh
 VOLUME ["/var/lib/postgresql/data"]
+VOLUME ["/tmp/.X11-unix:/tmp/.X11-unix"]
 CMD ["/app/start.sh"]
