@@ -4,9 +4,10 @@ WORKDIR /app/build
 RUN mvn clean package
 
 FROM ubuntu
+ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
-    apt-get install -y openjdk-8-jdk && \
-    apt-get install -y postgresql && \
+    apt-get install -y --no-install-recommends openjdk-8-jre && \
+    apt-get install -y --no-install-recommends postgresql && \
     mkdir -p /var/lib/postgresql/data && \
     chown -R postgres:postgres /var/lib/postgresql && \
     mkdir -p /var/run/postgresql && \
