@@ -30,11 +30,8 @@ docker run -e DISPLAY=host.docker.internal:0.0 <тег созданного об
 ### Linux
 Для запуска приложения необходимо в корне проекта в терминале запустить следующие команды:
 ```
-export DISPLAY=:0
-xhost +si:localuser:root
-xhost +
-docker build -t <тег образа> -f DockerfileAlone .
-docker run -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix <тег созданного образа>
+sudo chmod +x startDocker.sh
+./startDocker.sh
 ```
 # Отладка приложения
 При необходимости, для полного удаления созданных контейнеров, образов и хранилищ, выполните команду
