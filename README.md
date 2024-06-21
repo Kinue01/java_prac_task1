@@ -11,7 +11,6 @@
 ```
 sudo apt update
 sudo apt install xorg openbox
-export DISPLAY=:0
 ```
 # Запуск приложения
 ## Docker Compose
@@ -31,6 +30,7 @@ docker run -e DISPLAY=host.docker.internal:0.0 <тег созданного об
 ### Linux
 Для запуска приложения необходимо в корне проекта в терминале запустить следующие команды:
 ```
+export DISPLAY=:0
 xhost +si:localuser:root
 xhost +
 docker build -t <тег образа> -f DockerfileAlone .
