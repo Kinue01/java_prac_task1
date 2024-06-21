@@ -13,6 +13,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="app" target="1.8" />
+      <module name="sdgsdg" target="21" />
       <module name="startApp (1)" target="1.8" />
     </bytecodeTargetLevel>
   </component>

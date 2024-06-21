@@ -8,11 +8,13 @@
         <option value="$PROJECT_DIR$/mr-231/pom.xml" />
         <option value="$PROJECT_DIR$/startApp/pom.xml" />
         <option value="$PROJECT_DIR$/mr-231-3/pom.xml" />
+        <option value="$PROJECT_DIR$/sdgsdg/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/app/pom.xml" />
+        <option value="$PROJECT_DIR$/sdgsdg/pom.xml" />
       </set>
     </option>
   </component>
